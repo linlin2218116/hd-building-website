@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HD Building and Development | Residential Builder</title>
+  
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Swiper.js for Touch-Swipable Project Carousels -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              900: '#121316',
+              800: '#1b1d22',
+              700: '#272a31',
+              accent: '#d97706', // Subtle warm amber for subtle builder accents
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Swiper customized pagination styling */
+    .swiper-button-next, .swiper-button-prev {
+      color: #ffffff !important;
+      background: rgba(18, 19, 22, 0.65);
+      backdrop-filter: blur(4px);
+      width: 36px !important;
+      height: 36px !important;
+      border-radius: 9999px;
+      transition: all 0.2s ease;
+    }
+    .swiper-button-next:after, .swiper-button-prev:after {
+      font-size: 14px !important;
+      font-weight: 700;
+    }
+    .swiper-button-next:hover, .swiper-button-prev:hover {
+      background: rgba(18, 19, 22, 0.95);
+    }
+    .swiper-pagination-bullet {
+      background: #ffffff !important;
+      opacity: 0.6;
+    }
+    .swiper-pagination-bullet-active {
+      opacity: 1;
+      background: #ffffff !important;
+      width: 18px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-[#fafaf9] text-zinc-900 font-sans antialiased selection:bg-brand-accent selection:text-white min-h-screen flex flex-col">
+
+  <!-- ================= TOP NOTIFICATION / QUICK BAR ================= -->
+  <div class="bg-brand-900 text-zinc-400 text-xs py-2 px-4 border-b border-zinc-800">
+    <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-4">
+        <span class="inline-flex items-center gap-1.5 text-zinc-300">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Now booking Q2 / Q3 projects
+        </span>
+        <span class="hidden sm:inline text-zinc-600">|</span>
+        <span class="hidden sm:inline">Licence # 277664C &bull; Fully Insured</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="tel:0433852599" class="hover:text-white transition flex items-center gap-1">
+          <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+          0400 000 000
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= HEADER / STICKY NAV ================= -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-zinc-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-18 flex items-center justify-between py-4">
+      
+      <!-- Brand Logo / Name -->
+      <a href="#home" onclick="switchView('home')" class="group flex flex-col">
+        <span class="text-lg font-bold tracking-tight text-brand-900 uppercase">Apex Construction</span>
+        <span class="text-[10px] tracking-widest text-zinc-500 uppercase -mt-0.5">Custom Carpentry & Renovation</span>
+      </a>
+
+      <!-- Desktop Navigation Tabs -->
+      <nav class="flex items-center gap-1 sm:gap-2 bg-zinc-100 p-1 rounded-xl border border-zinc-200 text-xs sm:text-sm font-medium">
+        <button id="nav-btn-home" onclick="switchView('home')" class="px-4 py-1.5 rounded-lg transition-all duration-200 bg-white text-zinc-950 shadow-sm font-semibold">
+          Services & Contact
+        </button>
+        <button id="nav-btn-projects" onclick="switchView('projects')" class="px-4 py-1.5 rounded-lg transition-all duration-200 text-zinc-600 hover:text-zinc-950">
+          Projects (9)
+        </button>
+      </nav>
+
+      <!-- Direct Call Button -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="#contact" onclick="switchView('home', true)" class="bg-brand-900 hover:bg-brand-800 text-white text-xs font-semibold px-4 py-2.5 rounded-lg transition">
+          Request Quote
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN VIEW CONTAINER ================= -->
+  <main class="flex-grow">
+    
+    <!-- ======================================================== -->
+    <!-- VIEW 1: HOME, SERVICES, AND CONTACT                      -->
+    <!-- ======================================================== -->
+    <div id="view-home" class="block">
+      
+      <!-- HERO SECTION -->
+      <section class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 pb-16 lg:py-20">
+        <div class="grid lg:grid-cols-12 gap-10 items-center">
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-zinc-100 border border-zinc-300 rounded-full text-xs font-semibold uppercase tracking-wider text-zinc-700">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-accent"></i>
+              One-On-One Project Delivery
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-900 leading-[1.1]">
+              Residential Carpentry, Extensions & Renovations.
+            </h1>
+
+            <p class="text-zinc-600 text-base sm:text-lg max-w-xl leading-relaxed">
+              Straightforward quality without subcontractors or sales reps. Deal directly with the builder on-site from first quote to final cleanup.
+            </p>
+
+            <div class="flex flex-wrap gap-3 pt-2">
+              <a href="#contact" class="bg-brand-900 hover:bg-brand-800 text-white font-medium text-sm px-6 py-3.5 rounded-xl transition flex items-center gap-2 shadow-sm">
+                Get a Fast Quote
+                <i data-lucide="arrow-down" class="w-4 h-4"></i>
+              </a>
+              <button onclick="switchView('projects')" class="bg-white hover:bg-zinc-100 text-zinc-900 border border-zinc-300 font-medium text-sm px-6 py-3.5 rounded-xl transition flex items-center gap-2">
+                Browse 9 Recent Builds
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <!-- Trust points -->
+            <div class="grid grid-cols-3 gap-4 pt-6 border-t border-zinc-200">
+              <div>
+                <p class="text-xl font-bold text-brand-900">14+</p>
+                <p class="text-xs text-zinc-500">Years on Tools</p>
+              </div>
+              <div>
+                <p class="text-xl font-bold text-brand-900">Direct</p>
+                <p class="text-xs text-zinc-500">Solo Builder Managed</p>
+              </div>
+              <div>
+                <p class="text-xl font-bold text-brand-900">Fixed</p>
+                <p class="text-xs text-zinc-500">Transparent Pricing</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Image with Overlay Card -->
+          <div class="lg:col-span-5 relative">
+            <div class="rounded-2xl overflow-hidden shadow-2xl border border-zinc-200 aspect-[4/5] bg-zinc-200">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80" alt="Completed extension and deck" class="w-full h-full object-cover">
+            </div>
+            <div class="absolute -bottom-4 -left-4 bg-white p-4 rounded-xl shadow-lg border border-zinc-200 hidden sm:flex items-center gap-3">
+              <div class="p-2.5 bg-zinc-100 rounded-lg text-brand-accent">
+                <i data-lucide="hammer" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="text-xs font-bold text-brand-900">Craftsmanship Guaranteed</p>
+                <p class="text-[11px] text-zinc-500">Built strictly to Australian Building Codes</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES SECTION -->
+      <section class="bg-zinc-100 py-16 border-y border-zinc-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+          <div class="max-w-xl mb-12">
+            <h2 class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Capabilities</h2>
+            <p class="text-3xl font-bold text-brand-900 tracking-tight">Core Building Services</p>
+            <p class="text-zinc-600 text-sm mt-2">Focused on quality residential structures. No job is handed off to outside parties.</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Service 1 -->
+            <div class="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm hover:shadow transition flex flex-col justify-between">
+              <div>
+                <div class="w-10 h-10 rounded-lg bg-zinc-100 flex items-center justify-center text-brand-900 mb-5">
+                  <i data-lucide="layers" class="w-5 h-5"></i>
+                </div>
+                <h3 class="font-bold text-lg text-brand-900 mb-3">Hardwood Decks & Pergolas</h3>
+                <ul class="text-xs text-zinc-600 space-y-2">
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-900 shrink-0 mt-0.5"></i>
+                    <span>Spotted Gum, Blackbutt, & Composite</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-900 shrink-0 mt-0.5"></i>
+                    <span>Covered insulated roof pergolas</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-900 shrink-0 mt-0.5"></i>
+                    <span>Council DA & CDC approval assistance</span>
+                  </li>
+                </ul>
+              </div>
+              <button onclick="switchView('projects')" class="mt-6 text-xs font-semibold text-zinc-900 flex items-center gap-1 hover:underline">
+                View deck builds &rarr;
+              </button>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm hover:shadow transition flex flex-col justify-between">
+              <div>
+                <div class="w-10 h-10 rounded-lg bg-zinc-100 flex items-center justify-center text-brand-900 mb-5">
+                  <i data-lucide="home" class="w-5 h-5"></i>
+                </div>
+                <h3 class="font-bold text-lg text-brand-900 mb-3">Home Extensions & Framing</h3>
+                <ul class="text-xs text-zinc-600 space-y-2">
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-900 shrink-0 mt-0.5"></i>
+                    <span>Ground floor room extensions</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-900 shrink-0 mt-0.5"></i>
+                    <span>Wall removals & steel beam installations</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-900 shrink-0 mt-0.5"></i>
+                    <span>Truss roof framing & subflooring</span>
+                  </li>
+                </ul>
+              </div>
+              <button onclick="switchView('projects')" class="mt-6 text-xs font-semibold text-zinc-900 flex items-center gap-1 hover:underline">
+                View framing builds &rarr;
+              </button>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm hover:shadow transition flex flex-col justify-between">
+              <div>
+                <div class="w-10 h-10 rounded-lg bg-zinc-100 flex items-center justify-center text-brand-900 mb-5">
+                  <i data-lucide="bath" class="w-5 h-5"></i>
+                </div>
+                <h3 class="font-bold text-lg text-brand-900 mb-3">Bathroom & Kitchen Remodels</h3>
+                <ul class="text-xs text-zinc-600 space-y-2">
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-900 shrink-0 mt-0.5"></i>
+                    <span>Complete gut, re-sheeting & waterproofing</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-900 shrink-0 mt-0.5"></i>
+                    <span>Custom cabinetry install & framing</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-900 shrink-0 mt-0.5"></i>
+                    <span>Tiling & licensed plumbing coordination</span>
+                  </li>
+                </ul>
+              </div>
+              <button onclick="switchView('projects')" class="mt-6 text-xs font-semibold text-zinc-900 flex items-center gap-1 hover:underline">
+                View renovation builds &rarr;
+              </button>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm hover:shadow transition flex flex-col justify-between">
+              <div>
+                <div class="w-10 h-10 rounded-lg bg-zinc-100 flex items-center justify-center text-brand-900 mb-5">
+                  <i data-lucide="wrench" class="w-5 h-5"></i>
+                </div>
+                <h3 class="font-bold text-lg text-brand-900 mb-3">Second-Fix & Fitouts</h3>
+                <ul class="text-xs text-zinc-600 space-y-2">
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-900 shrink-0 mt-0.5"></i>
+                    <span>Skirting boards, architraves & jambs</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-900 shrink-0 mt-0.5"></i>
+                    <span>Interior timber cladding & feature ceilings</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-zinc-900 shrink-0 mt-0.5"></i>
+                    <span>Door hanging & bespoke carpentry</span>
+                  </li>
+                </ul>
+              </div>
+              <button onclick="switchView('projects')" class="mt-6 text-xs font-semibold text-zinc-900 flex items-center gap-1 hover:underline">
+                View finish builds &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT / QUOTE FORM SECTION -->
+      <section id="contact" class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
+        <div class="grid lg:grid-cols-12 gap-12 bg-white border border-zinc-200 rounded-3xl p-8 sm:p-12 shadow-sm">
+          
+          <!-- Contact Info -->
+          <div class="lg:col-span-5 space-y-8">
+            <div>
+              <h2 class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Direct Contact</h2>
+              <p class="text-3xl font-bold text-brand-900 tracking-tight">Let's talk through your job.</p>
+              <p class="text-zinc-600 text-sm mt-3 leading-relaxed">
+                Send through a quick description or photos. I personally review every enquiry and reply within 24 hours with rough budget guidance or a site visit date.
+              </p>
+            </div>
+
+            <div class="space-y-4 text-sm">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-900 shrink-0">
+                  <i data-lucide="phone-call" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-zinc-500">Phone & SMS</p>
+                  <a href="tel:0400000000" class="font-bold text-zinc-900 hover:text-brand-accent transition">0400 000 000</a>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-900 shrink-0">
+                  <i data-lucide="mail" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-zinc-500">Email</p>
+                  <a href="mailto:info@yourdomain.com" class="font-bold text-zinc-900 hover:text-brand-accent transition">info@yourdomain.com</a>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-zinc-100 flex items-center justify-center text-zinc-900 shrink-0">
+                  <i data-lucide="map-pin" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-zinc-500">Service Coverage</p>
+                  <p class="font-bold text-zinc-900">Hills District, Upper North Shore & Surrounds</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-zinc-50 p-4 rounded-xl border border-zinc-200">
+              <p class="text-xs font-semibold text-zinc-800">Builder License: 349821C</p>
+              <p class="text-xs text-zinc-500 mt-0.5">Public Liability: $20,000,000 policy in place</p>
+            </div>
+          </div>
+
+          <!-- The Form (Hooks up to Formspree for 100% free delivery) -->
+          <div class="lg:col-span-7">
+            <!-- Replace YOUR_FORMSPREE_ID with your free Formspree key -->
+            <form action="https://formspree.io/f/mzeegbgl" method="POST" class="space-y-4">
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-zinc-700 uppercase tracking-wider mb-1.5">Your Name *</label>
+                  <input type="text" name="name" required placeholder="John Smith" class="w-full bg-zinc-50 border border-zinc-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-900">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-zinc-700 uppercase tracking-wider mb-1.5">Phone Number *</label>
+                  <input type="tel" name="phone" required placeholder="0400 000 000" class="w-full bg-zinc-50 border border-zinc-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-900">
+                </div>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-zinc-700 uppercase tracking-wider mb-1.5">Email Address</label>
+                  <input type="email" name="email" placeholder="john@example.com" class="w-full bg-zinc-50 border border-zinc-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-900">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-zinc-700 uppercase tracking-wider mb-1.5">Project Suburb *</label>
+                  <input type="text" name="suburb" required placeholder="e.g. Castle Hill, Hornsby" class="w-full bg-zinc-50 border border-zinc-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-900">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-zinc-700 uppercase tracking-wider mb-1.5">Service Required</label>
+                <select name="service" class="w-full bg-zinc-50 border border-zinc-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-900">
+                  <option value="Decking / Pergola">Decking or Pergola</option>
+                  <option value="Home Extension">Home Extension / Framing</option>
+                  <option value="Bathroom / Kitchen Renovation">Renovation (Bathroom / Kitchen)</option>
+                  <option value="General Carpentry">Structural Wall Removal / Steel</option>
+                  <option value="Other">Other Custom Work</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-zinc-700 uppercase tracking-wider mb-1.5">Project Description & Timeline</label>
+                <textarea name="message" rows="4" placeholder="Brief outline of the job, approximate sizes, or when you hope to start..." class="w-full bg-zinc-50 border border-zinc-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-900"></textarea>
+              </div>
+
+              <button type="submit" class="w-full bg-brand-900 hover:bg-brand-800 text-white font-semibold text-sm py-4 rounded-xl transition shadow-md">
+                Send Direct Enquiry
+              </button>
+              
+              <p class="text-[11px] text-zinc-400 text-center">No marketing emails or spam. Straight directly to the builder's phone.</p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- VIEW 2: 9 COMPLETED PROJECTS WITH SWIPABLE GALLERIES      -->
+    <!-- ======================================================== -->
+    <div id="view-projects" class="hidden">
+      
+      <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+        <!-- Title Banner -->
+        <div class="border-b border-zinc-200 pb-8 mb-12">
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Portfolio & Proof</p>
+              <h2 class="text-3xl sm:text-4xl font-bold text-brand-900 tracking-tight">Recent Projects (9)</h2>
+            </div>
+            <p class="text-sm text-zinc-600 max-w-md">Swipe or click arrows on any project to view progression, framing, and final finishes.</p>
+          </div>
+        </div>
+
+        <!-- 9 PROJECTS LIST -->
+        <div class="space-y-16">
+          
+          <!-- PROJECT 1 -->
+          <article class="bg-white rounded-3xl border border-zinc-200 overflow-hidden shadow-sm">
+            <div class="grid lg:grid-cols-12 gap-0">
+              <div class="lg:col-span-7 bg-zinc-900">
+                <!-- Swiper Slider -->
+                <div class="swiper projectSwiper h-72 sm:h-96 lg:h-[420px] w-full">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Completed deck"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Framing work"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Site prep"></div>
+                  </div>
+                  <div class="swiper-pagination"></div>
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+              </div>
+              <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                  <span class="text-[11px] font-bold text-amber-600 uppercase tracking-widest">Project 01 &bull; Outdoor Living</span>
+                  <h3 class="text-2xl font-bold text-brand-900 mt-1 mb-3">Hardwood Blackbutt Deck & Cantilever Pergola</h3>
+                  <p class="text-zinc-600 text-sm leading-relaxed mb-6">
+                    Full demolition of old rotting pine structure. Engineered subfloor with galvanized steel stirrups and 130mm select grade Blackbutt decking boards, finished with cut-in deck lighting.
+                  </p>
+                </div>
+                <div class="grid grid-cols-3 gap-2 pt-4 border-t border-zinc-100 text-xs">
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Location</span>
+                    <span class="font-semibold text-zinc-800">Pennant Hills</span>
+                  </div>
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Duration</span>
+                    <span class="font-semibold text-zinc-800">2.5 Weeks</span>
+                  </div>
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Scope</span>
+                    <span class="font-semibold text-zinc-800">Design & Build</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 2 -->
+          <article class="bg-white rounded-3xl border border-zinc-200 overflow-hidden shadow-sm">
+            <div class="grid lg:grid-cols-12 gap-0">
+              <div class="lg:col-span-7 bg-zinc-900">
+                <div class="swiper projectSwiper h-72 sm:h-96 lg:h-[420px] w-full">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Kitchen extension"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Structural wall demo"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Cabinet install"></div>
+                  </div>
+                  <div class="swiper-pagination"></div>
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+              </div>
+              <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                  <span class="text-[11px] font-bold text-amber-600 uppercase tracking-widest">Project 02 &bull; Structural Remodel</span>
+                  <h3 class="text-2xl font-bold text-brand-900 mt-1 mb-3">Load-Bearing Wall Removal & Kitchen Expansion</h3>
+                  <p class="text-zinc-600 text-sm leading-relaxed mb-6">
+                    Removed a 6-metre load-bearing brick wall to combine an enclosed dining and kitchen into an open-plan room. Installed concealed 250UB structural steel beam and engineered bulkheads.
+                  </p>
+                </div>
+                <div class="grid grid-cols-3 gap-2 pt-4 border-t border-zinc-100 text-xs">
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Location</span>
+                    <span class="font-semibold text-zinc-800">Wahroonga</span>
+                  </div>
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Duration</span>
+                    <span class="font-semibold text-zinc-800">3 Weeks</span>
+                  </div>
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Scope</span>
+                    <span class="font-semibold text-zinc-800">Structural Steel</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 3 -->
+          <article class="bg-white rounded-3xl border border-zinc-200 overflow-hidden shadow-sm">
+            <div class="grid lg:grid-cols-12 gap-0">
+              <div class="lg:col-span-7 bg-zinc-900">
+                <div class="swiper projectSwiper h-72 sm:h-96 lg:h-[420px] w-full">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Master ensuite"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Plumbing and sheeting"></div>
+                  </div>
+                  <div class="swiper-pagination"></div>
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+              </div>
+              <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                  <span class="text-[11px] font-bold text-amber-600 uppercase tracking-widest">Project 03 &bull; Renovation</span>
+                  <h3 class="text-2xl font-bold text-brand-900 mt-1 mb-3">Custom Master Ensuite & Walk-in Wardrobe</h3>
+                  <p class="text-zinc-600 text-sm leading-relaxed mb-6">
+                    Converted unused bedroom corner into a luxury master ensuite. Re-framed partitions, completed Class 3 polyurethane waterproofing, and fitted frameless glass and double vanity.
+                  </p>
+                </div>
+                <div class="grid grid-cols-3 gap-2 pt-4 border-t border-zinc-100 text-xs">
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Location</span>
+                    <span class="font-semibold text-zinc-800">Epping</span>
+                  </div>
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Duration</span>
+                    <span class="font-semibold text-zinc-800">3 Weeks</span>
+                  </div>
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Scope</span>
+                    <span class="font-semibold text-zinc-800">Full Fitout</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 4 -->
+          <article class="bg-white rounded-3xl border border-zinc-200 overflow-hidden shadow-sm">
+            <div class="grid lg:grid-cols-12 gap-0">
+              <div class="lg:col-span-7 bg-zinc-900">
+                <div class="swiper projectSwiper h-72 sm:h-96 lg:h-[420px] w-full">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Studio frame"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1541888946425-d0fbb18615f8?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Roof installation"></div>
+                  </div>
+                  <div class="swiper-pagination"></div>
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+              </div>
+              <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                  <span class="text-[11px] font-bold text-amber-600 uppercase tracking-widest">Project 04 &bull; Backyard Studio</span>
+                  <h3 class="text-2xl font-bold text-brand-900 mt-1 mb-3">28m² Detached Work-From-Home Studio</h3>
+                  <p class="text-zinc-600 text-sm leading-relaxed mb-6">
+                    Turnkey garden office pod constructed with termite-treated pine timber framing, James Hardie Scyon Linea weatherboards, Colorbond roofing, and acoustic insulation.
+                  </p>
+                </div>
+                <div class="grid grid-cols-3 gap-2 pt-4 border-t border-zinc-100 text-xs">
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Location</span>
+                    <span class="font-semibold text-zinc-800">Beecroft</span>
+                  </div>
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Duration</span>
+                    <span class="font-semibold text-zinc-800">4 Weeks</span>
+                  </div>
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Scope</span>
+                    <span class="font-semibold text-zinc-800">Turnkey Build</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 5 -->
+          <article class="bg-white rounded-3xl border border-zinc-200 overflow-hidden shadow-sm">
+            <div class="grid lg:grid-cols-12 gap-0">
+              <div class="lg:col-span-7 bg-zinc-900">
+                <div class="swiper projectSwiper h-72 sm:h-96 lg:h-[420px] w-full">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Alfresco build"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Post framing"></div>
+                  </div>
+                  <div class="swiper-pagination"></div>
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+              </div>
+              <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                  <span class="text-[11px] font-bold text-amber-600 uppercase tracking-widest">Project 05 &bull; Outdoor Living</span>
+                  <h3 class="text-2xl font-bold text-brand-900 mt-1 mb-3">Timber Gable Alfresco & Outdoor Kitchen</h3>
+                  <p class="text-zinc-600 text-sm leading-relaxed mb-6">
+                    Pitched ceiling extension with exposed Douglas Fir rafters, integrated recessed heaters, and custom outdoor kitchen island framing clad in natural sandstone veneer.
+                  </p>
+                </div>
+                <div class="grid grid-cols-3 gap-2 pt-4 border-t border-zinc-100 text-xs">
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Location</span>
+                    <span class="font-semibold text-zinc-800">Castle Hill</span>
+                  </div>
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Duration</span>
+                    <span class="font-semibold text-zinc-800">3.5 Weeks</span>
+                  </div>
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Scope</span>
+                    <span class="font-semibold text-zinc-800">Carpentry & Roof</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 6 -->
+          <article class="bg-white rounded-3xl border border-zinc-200 overflow-hidden shadow-sm">
+            <div class="grid lg:grid-cols-12 gap-0">
+              <div class="lg:col-span-7 bg-zinc-900">
+                <div class="swiper projectSwiper h-72 sm:h-96 lg:h-[420px] w-full">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1541888946425-d0fbb18615f8?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Roof extension"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Timber trusses"></div>
+                  </div>
+                  <div class="swiper-pagination"></div>
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+              </div>
+              <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                  <span class="text-[11px] font-bold text-amber-600 uppercase tracking-widest">Project 06 &bull; Extensions</span>
+                  <h3 class="text-2xl font-bold text-brand-900 mt-1 mb-3">Sunroom & Laundry Extension</h3>
+                  <p class="text-zinc-600 text-sm leading-relaxed mb-6">
+                    A rear timber-framed addition providing an oversized laundry, mudroom, and sunlit reading nook connecting to the main backyard garden area.
+                  </p>
+                </div>
+                <div class="grid grid-cols-3 gap-2 pt-4 border-t border-zinc-100 text-xs">
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Location</span>
+                    <span class="font-semibold text-zinc-800">Turramurra</span>
+                  </div>
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Duration</span>
+                    <span class="font-semibold text-zinc-800">5 Weeks</span>
+                  </div>
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Scope</span>
+                    <span class="font-semibold text-zinc-800">Full Extension</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 7 -->
+          <article class="bg-white rounded-3xl border border-zinc-200 overflow-hidden shadow-sm">
+            <div class="grid lg:grid-cols-12 gap-0">
+              <div class="lg:col-span-7 bg-zinc-900">
+                <div class="swiper projectSwiper h-72 sm:h-96 lg:h-[420px] w-full">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Timber joinery"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Wall cladding"></div>
+                  </div>
+                  <div class="swiper-pagination"></div>
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+              </div>
+              <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                  <span class="text-[11px] font-bold text-amber-600 uppercase tracking-widest">Project 07 &bull; Interior Carpentry</span>
+                  <h3 class="text-2xl font-bold text-brand-900 mt-1 mb-3">Custom Hardwood Staircase & Feature Wall</h3>
+                  <p class="text-zinc-600 text-sm leading-relaxed mb-6">
+                    Bespoke Victorian Ash open-tread staircase with integrated LED shadowline slots and floor-to-ceiling slatted screening.
+                  </p>
+                </div>
+                <div class="grid grid-cols-3 gap-2 pt-4 border-t border-zinc-100 text-xs">
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Location</span>
+                    <span class="font-semibold text-zinc-800">Baulkham Hills</span>
+                  </div>
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Duration</span>
+                    <span class="font-semibold text-zinc-800">1.5 Weeks</span>
+                  </div>
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Scope</span>
+                    <span class="font-semibold text-zinc-800">Architectural Joinery</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 8 -->
+          <article class="bg-white rounded-3xl border border-zinc-200 overflow-hidden shadow-sm">
+            <div class="grid lg:grid-cols-12 gap-0">
+              <div class="lg:col-span-7 bg-zinc-900">
+                <div class="swiper projectSwiper h-72 sm:h-96 lg:h-[420px] w-full">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Pool deck"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Pool boundary framing"></div>
+                  </div>
+                  <div class="swiper-pagination"></div>
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+              </div>
+              <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                  <span class="text-[11px] font-bold text-amber-600 uppercase tracking-widest">Project 08 &bull; Poolside Decking</span>
+                  <h3 class="text-2xl font-bold text-brand-900 mt-1 mb-3">Composite Pool Surround & Glass Balustrade</h3>
+                  <p class="text-zinc-600 text-sm leading-relaxed mb-6">
+                    Zero-maintenance composite timber deck flush-fitted with an existing fibreglass pool shell. Hand-calibrated concealed fixings and safety compliant core-drilled glass fencing.
+                  </p>
+                </div>
+                <div class="grid grid-cols-3 gap-2 pt-4 border-t border-zinc-100 text-xs">
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Location</span>
+                    <span class="font-semibold text-zinc-800">Kellyville</span>
+                  </div>
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Duration</span>
+                    <span class="font-semibold text-zinc-800">2 Weeks</span>
+                  </div>
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Scope</span>
+                    <span class="font-semibold text-zinc-800">Deck & Fencing</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 9 -->
+          <article class="bg-white rounded-3xl border border-zinc-200 overflow-hidden shadow-sm">
+            <div class="grid lg:grid-cols-12 gap-0">
+              <div class="lg:col-span-7 bg-zinc-900">
+                <div class="swiper projectSwiper h-72 sm:h-96 lg:h-[420px] w-full">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Garage conversion framing"></div>
+                    <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover" alt="Livable conversion"></div>
+                  </div>
+                  <div class="swiper-pagination"></div>
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+              </div>
+              <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                  <span class="text-[11px] font-bold text-amber-600 uppercase tracking-widest">Project 09 &bull; Conversion</span>
+                  <h3 class="text-2xl font-bold text-brand-900 mt-1 mb-3">Double Garage to Self-Contained Guest Suite</h3>
+                  <p class="text-zinc-600 text-sm leading-relaxed mb-6">
+                    Floor level damp proofing and timber batten raising, replacement of roller doors with insulated double-glazed cedar slider doors, and addition of kitchen nook and ensuite.
+                  </p>
+                </div>
+                <div class="grid grid-cols-3 gap-2 pt-4 border-t border-zinc-100 text-xs">
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Location</span>
+                    <span class="font-semibold text-zinc-800">Dural</span>
+                  </div>
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Duration</span>
+                    <span class="font-semibold text-zinc-800">4.5 Weeks</span>
+                  </div>
+                  <div>
+                    <span class="text-zinc-400 block text-[10px] uppercase">Scope</span>
+                    <span class="font-semibold text-zinc-800">Full Conversion</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Bottom CTA on Projects Page -->
+        <div class="mt-16 bg-zinc-900 text-white p-8 sm:p-12 rounded-3xl text-center space-y-4">
+          <h3 class="text-2xl sm:text-3xl font-bold tracking-tight">Have a similar project in mind?</h3>
+          <p class="text-zinc-400 text-sm max-w-lg mx-auto">Get in touch to check current scheduling and receive realistic upfront cost estimates.</p>
+          <div class="pt-2">
+            <button onclick="switchView('home', true)" class="bg-white hover:bg-zinc-100 text-zinc-900 font-semibold px-6 py-3 rounded-xl transition text-sm">
+              Contact the Builder
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-zinc-950 text-zinc-500 py-10 border-t border-zinc-800 text-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div>
+        <p class="text-zinc-300 font-bold uppercase tracking-wider">Apex Construction & Carpentry</p>
+        <p class="mt-0.5 text-zinc-500">&copy; <span id="year"></span> All rights reserved &bull; Lic No: 349821C</p>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="#home" onclick="switchView('home')" class="hover:text-zinc-300 transition">Services</a>
+        <a href="#projects" onclick="switchView('projects')" class="hover:text-zinc-300 transition">Projects</a>
+        <a href="#contact" onclick="switchView('home', true)" class="hover:text-zinc-300 transition">Get Quote</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT FOR VIEW SWITCHING & CAROUSELS -->
+  <script>
+    // Set dynamic copyright year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Toggle between View 1 (Home/Services/Contact) and View 2 (Projects Showcase)
+    function switchView(viewName, scrollToContact = false) {
+      const homeView = document.getElementById('view-home');
+      const projectsView = document.getElementById('view-projects');
+      const btnHome = document.getElementById('nav-btn-home');
+      const btnProjects = document.getElementById('nav-btn-projects');
+
+      if (viewName === 'projects') {
+        homeView.classList.add('hidden');
+        projectsView.classList.remove('hidden');
+
+        // Style tabs
+        btnProjects.className = "px-4 py-1.5 rounded-lg transition-all duration-200 bg-white text-zinc-950 shadow-sm font-semibold";
+        btnHome.className = "px-4 py-1.5 rounded-lg transition-all duration-200 text-zinc-600 hover:text-zinc-950";
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Trigger swiper recalculation on visibility change
+        setTimeout(initSwipers, 100);
+      } else {
+        projectsView.classList.add('hidden');
+        homeView.classList.remove('hidden');
+
+        // Style tabs
+        btnHome.className = "px-4 py-1.5 rounded-lg transition-all duration-200 bg-white text-zinc-950 shadow-sm font-semibold";
+        btnProjects.className = "px-4 py-1.5 rounded-lg transition-all duration-200 text-zinc-600 hover:text-zinc-950";
+
+        if (scrollToContact) {
+          const contactSection = document.getElementById('contact');
+          if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+    }
+
+    // Initialize all 9 project swiper carousels
+    let swiperInstances = [];
+    function initSwipers() {
+      if (swiperInstances.length > 0) return; // Already initialized
+      const sliders = document.querySelectorAll('.projectSwiper');
+      sliders.forEach((sliderEl) => {
+        const swiper = new Swiper(sliderEl, {
+          loop: true,
+          grabCursor: true,
+          pagination: {
+            el: sliderEl.querySelector('.swiper-pagination'),
+            clickable: true,
+          },
+          navigation: {
+            nextEl: sliderEl.querySelector('.swiper-button-next'),
+            prevEl: sliderEl.querySelector('.swiper-button-prev'),
+          },
+        });
+        swiperInstances.push(swiper);
+      });
+    }
+
+    // Initialize on page load
+    window.onload = function() {
+      initSwipers();
+    };
+  </script>
+</body>
+</html>
